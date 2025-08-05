@@ -40,6 +40,14 @@ Tab:AddButton({
     end
 })
 
+-- Steal a Brainrot Loader Button
+Tab:AddButton({
+    Name = "Steal a Brainrot",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/VisioneducationOfLuaCoding/StealABrainrot/refs/heads/main/Ambrion"))()
+    end
+})
+
 -- Rivals V3 Loader Button
 Tab:AddButton({
     Name = "Rivals V3",
