@@ -56,5 +56,13 @@ Tab:AddButton({
     end
 })
 
+-- bball legends
+Tab:AddButton({
+    Name = "BasletBall Legends",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/VisioneducationOfLuaCoding/basketball-legends/refs/heads/main/ambrion%20v1'))()
+    end
+})
+
 -- Init
 OrionLib:Init()
