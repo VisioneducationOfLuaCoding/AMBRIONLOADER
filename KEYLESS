@@ -58,9 +58,17 @@ Tab:AddButton({
 
 -- bball legends
 Tab:AddButton({
-    Name = "BasletBall Legends",
+    Name = "BasketBall Legends",
     Callback = function()
         loadstring(game:HttpGet('https://raw.githubusercontent.com/VisioneducationOfLuaCoding/basketball-legends/refs/heads/main/ambrion%20v1'))()
+    end
+})
+
+-- Ink Game
+Tab:AddButton({
+    Name = "Ink Game",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/VisioneducationOfLuaCoding/Ink-Game/refs/heads/main/Ambrion"))()
     end
 })
 
