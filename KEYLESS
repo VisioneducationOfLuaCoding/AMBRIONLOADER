@@ -72,5 +72,13 @@ Tab:AddButton({
     end
 })
 
+-- Cut trees
+Tab:AddButton({
+    Name = "Cut Trees",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/VisioneducationOfLuaCoding/CutTrees/refs/heads/main/AmbrionLogs"))()
+    end
+})
+
 -- Init
 OrionLib:Init()
