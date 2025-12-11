@@ -82,3 +82,62 @@ Tab:AddButton({
 
 -- Init
 OrionLib:Init()
+
+--// Ambrion Status Bar UI (Top Left, Shorter Width)
+-- LocalScript inside StarterPlayerScripts
+
+local RunService = game:GetService("RunService")
+local Stats = game:GetService("Stats")
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+-- ScreenGui
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "StatusBar"
+screenGui.ResetOnSpawn = false
+screenGui.Parent = LocalPlayer:WaitForChild("PlayerGui")
+
+-- Main container (shorter width)
+local container = Instance.new("Frame")
+container.Name = "StatusContainer"
+container.Size = UDim2.new(0, 550, 0, 24) -- reduced width
+container.Position = UDim2.new(0, 5, 0, 5)
+container.BackgroundColor3 = Color3.fromRGB(30, 30, 30) -- dark gray
+container.BorderSizePixel = 0
+container.Parent = screenGui
+
+-- Red line at the top (matches container width)
+local redLine = Instance.new("Frame")
+redLine.Name = "TopLine"
+redLine.Size = UDim2.new(1, 0, 0, 2) -- spans full container width
+redLine.Position = UDim2.new(0, 0, 0, 0)
+redLine.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+redLine.BorderSizePixel = 0
+redLine.Parent = container
+
+-- TextLabel
+local statusLabel = Instance.new("TextLabel")
+statusLabel.Name = "StatusText"
+statusLabel.Size = UDim2.new(1, -10, 1, 0)
+statusLabel.Position = UDim2.new(0, 5, 0, 0)
+statusLabel.BackgroundTransparency = 1
+statusLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+statusLabel.Font = Enum.Font.Code
+statusLabel.TextSize = 14
+statusLabel.TextXAlignment = Enum.TextXAlignment.Left
+statusLabel.Text = ""
+statusLabel.Parent = container
+
+-- Config
+local scriptName = "Ambrion"
+local version = "Status"
+
+-- Update loop
+RunService.RenderStepped:Connect(function()
+    local fps = math.floor(1 / RunService.RenderStepped:Wait())
+    local ping = Stats.Network.ServerStatsItem["Data Ping"]:GetValue()
+    local time = os.date("%H:%M:%S")
+
+    statusLabel.Text = string.format("%s | %s | FPS: %d | Ping: %d | %s", scriptName, version, fps, ping, time)
+end)
+
